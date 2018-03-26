@@ -97,16 +97,16 @@
  <HintPath>D:/Program Files/Unity2017/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
  <Reference Include="Excel">
- <HintPath>D:/文档/unity_txt/Assets/excel/Excel.dll</HintPath>
+ <HintPath>E:/github_unity3d_txt/unity3d_txt/unity_txt/Assets/excel/Excel.dll</HintPath>
  </Reference>
  <Reference Include="ICSharpCode.SharpZipLib">
- <HintPath>D:/文档/unity_txt/Assets/excel/ICSharpCode.SharpZipLib.dll</HintPath>
+ <HintPath>E:/github_unity3d_txt/unity3d_txt/unity_txt/Assets/excel/ICSharpCode.SharpZipLib.dll</HintPath>
  </Reference>
  <Reference Include="System.Data">
- <HintPath>D:/文档/unity_txt/Assets/excel/System.Data.dll</HintPath>
+ <HintPath>E:/github_unity3d_txt/unity3d_txt/unity_txt/Assets/excel/System.Data.dll</HintPath>
  </Reference>
  <Reference Include="LitJson">
- <HintPath>D:/文档/unity_txt/Assets/Plugins/LitJson.dll</HintPath>
+ <HintPath>E:/github_unity3d_txt/unity3d_txt/unity_txt/Assets/Plugins/LitJson.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
