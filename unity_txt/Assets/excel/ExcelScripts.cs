@@ -227,7 +227,7 @@ public class ExcelScripts : MonoBehaviour
         {
             Android_openread();
             deletebutton();
-
+           Debug.Log(jsondataname[1]["name"].ToString());
         }
         else
         {
@@ -314,6 +314,15 @@ public class ExcelScripts : MonoBehaviour
     {
 
         buttons = GameObject.FindGameObjectsWithTag("button");
+        foreach (GameObject btn in buttons)
+        {
+            Destroy(btn);
+        }
+    }
+        void deleteText3d()           //删除Text3d
+    {
+
+        buttons = GameObject.FindGameObjectsWithTag("img");
         foreach (GameObject btn in buttons)
         {
             Destroy(btn);

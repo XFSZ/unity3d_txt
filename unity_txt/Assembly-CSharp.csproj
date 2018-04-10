@@ -57,6 +57,7 @@
      <Compile Include="Assets\excel\donghua.cs" />
      <Compile Include="Assets\excel\ExcelScripts.cs" />
      <Compile Include="Assets\excel\exit.cs" />
+     <Compile Include="Assets\excel\findword.cs" />
      <Compile Include="Assets\excel\getcolumn.cs" />
      <Compile Include="Assets\excel\getname.cs" />
      <Compile Include="Assets\excel\OpenFileName.cs" />
