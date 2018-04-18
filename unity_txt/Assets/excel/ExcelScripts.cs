@@ -53,8 +53,29 @@ public class ExcelScripts : MonoBehaviour
         Debug.Log(adpi);
         cpz = canve.transform.position.z;
         canve.GetComponent<CanvasScaler>().referencePixelsPerUnit = adpi;
+       // Debug.Log(PlayerPrefs.GetInt("1"));
+        PC_objectinit();
+        string yesui = PlayerPrefs.GetString("yes");
+        // if(PlayerPrefs.GetInt("1")!=0){
+        // jsondataname = PlayerPrefs.GetString("jsondata");
+        // Android_openread();
+        // deletebutton();
+        // }  
+        Debug.Log("this is1"+PlayerPrefs.GetString("yes"));
+        if(yesui=="yes"){
+        Debug.Log("this is2"+PlayerPrefs.GetString("yes"));
+        string  jsondatan = PlayerPrefs.GetString("jsondata");
+        jsondataname = JsonMapper.ToObject(jsondatan);
+        Android_openread();
+       
+        deletebutton();
+        PlayerPrefs.SetString("yes","notyes");
+        }
+    }
+    void Update(){
+        
 
-         PC_objectinit();
+
     }
 
     void OnGUI()
@@ -62,15 +83,13 @@ public class ExcelScripts : MonoBehaviour
         //  string s = string.Format("In = {0}\n name={1}", _filepath, _filename);
         //   GUI.TextArea(new Rect(0, 0, Screen.width * 2 / 10, Screen.height * 2 / 10), s);
         userName = GUI.TextField(new Rect(Screen.width - 200, 20, 200, 20), userName);//15为最大字符串长度
+        PlayerPrefs.SetString("wordhttp",userName);
         if (GUI.Button(new Rect(Screen.width - 80, 80, 50, 20), "重开"))
         {
             
             deletebutton();
             PC_objectinit();
-
-           
             httpimg = "http://" + userName + ":8888";
-
           //  GameObject.Find("Main Camera").GetComponent<xuanzhuan>().isexcel = false;
         }
         if (GUI.Button(new Rect(Screen.width - 280, 80, 50, 20), "文本"))
@@ -222,12 +241,13 @@ public class ExcelScripts : MonoBehaviour
         yield return www;
 
         jsondataname = JsonMapper.ToObject(www.text);
+        PlayerPrefs.SetString("jsondata",www.text);
         //读完之后执行下一步
         if (houzhuiming == true)
         {
             Android_openread();
             deletebutton();
-           Debug.Log(jsondataname[1]["name"].ToString());
+          
         }
         else
         {
@@ -257,14 +277,7 @@ public class ExcelScripts : MonoBehaviour
              if(int.Parse( sheetplace)<151  ){
             LoadImagen(int.Parse( sheetplace)/maxcount*140, sheetname, sheetplace, 2);
             }
-          
-            
-            
-            
            }
-
-           
-
         }
     }
     public void LoadImagen(float sheetCount, string sheetname, string x, float y)
@@ -281,6 +294,8 @@ public class ExcelScripts : MonoBehaviour
      
         obj.GetComponent<TextMesh>().fontSize = (int)sheetCount;
         obj.name = sheetname;
+        obj.AddComponent<BoxCollider>();
+      
         if (X >= -DX)
         {
             X = UX;

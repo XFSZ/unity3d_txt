@@ -180,8 +180,14 @@ public class xuanzhuan : MonoBehaviour
                 {
                     touchhit = true;
                     tempposi = !tempposi;
+                 //   Debug.Log(hit.transform.GetComponent<findword>().inputtext);
+                  //  hit.transform.GetComponent<findword>().findwordwithtext();
+                  PlayerPrefs.SetString("wordname",hit.transform.name);
+                  SceneManager.LoadScene(1);
+                //     SceneManager.LoadSceneAsync(1);
                 }
                 touchh = GameObject.Find(hit.transform.name);
+             
                 if (touchh.gameObject.transform.position.z >= -0.2f)
                 {
                     positiontemp = touchh.gameObject.transform.position;
