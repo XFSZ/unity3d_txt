@@ -22,9 +22,12 @@ public class findword : MonoBehaviour
 	float t1;  
     float t2; 
     public GameObject objfather;
+    string textword="";
     // Use this for initialization
     void Start()
     {
+      //  string t = "kk";
+       // replacetext(t); 
         //	inputtext = this.gameObject.name;
         findwordwithtext();
     }
@@ -32,7 +35,7 @@ public class findword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		 Debug.Log("this is"+PlayerPrefs.GetString("yes"));
+		// Debug.Log("this is"+PlayerPrefs.GetString("yes"));
         if(Input.GetMouseButtonDown(0)){    
             t2 = Time.realtimeSinceStartup;    
             if(t2 - t1 < 0.2){  
@@ -45,9 +48,10 @@ public class findword : MonoBehaviour
     public void findwordwithtext()
     {
 		PlayerPrefs.SetString("yes","yes");
-        //	string wordname = "社会";
+      //  	string wordname = "社会";
         string wordname = PlayerPrefs.GetString("wordname");
-        //	string wordhttp  = "127.0.0.1";
+        textword = wordname;
+      //  	string wordhttp  = "127.0.0.1";
         string wordhttp = PlayerPrefs.GetString("wordhttp");
         Debug.Log(wordhttp);
         Debug.Log(wordname);
@@ -58,9 +62,9 @@ public class findword : MonoBehaviour
     {
         WWW www = new WWW(s);
         string wordhttp = PlayerPrefs.GetString("wordhttp");
-        //	string wordhttp  = "127.0.0.1";
+     //   string wordhttp  = "127.0.0.1";
         yield return www;
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(3);
         string httpimg = "http://" + wordhttp + ":8888" + "/wordlist";
         StartCoroutine(httpgainwithdata(httpimg));
     }
@@ -78,12 +82,32 @@ public class findword : MonoBehaviour
         {
             GameObject obj = (GameObject)Instantiate(Resources.Load("WordText"));
             string sheetname = jsondataname[sheetCount]["name"].ToString();
+           // sheetname = sheetname.Replace("\n", "");//.Replace("\t","").Replace("\r","");
+          //  sheetname = sheetname.Replace(" ","");
 			string sheetcount = jsondataname[sheetCount]["count"].ToString();
             //  sheetplace = jsondataname[sheetCount]["count"].ToString();
-            obj.GetComponent<Text>().text = sheetcount+" 、"+ sheetname;
+            string  sheettext = sheetcount+" 、"+ sheetname;
+            sheettext = sheettext.Replace("\n", "").Replace(" ","");
+           sheettext= replacetext(sheettext);
+            obj.GetComponent<Text>().text = "<color=#00FF01FF>"+ sheettext+"</color>";
             obj.transform.SetParent(objfather.transform);
         }
         // Debug.Log(jsondataname[0]["name"].ToString());
+    }
+    string replacetext(string txt){
+            //  txt= "asdjsfk/asa/asaaa";            
+          string s = textword;
+          string rs = "<color=#FFFFFF>"+ s+"</color>";
+              txt = txt.Replace(s, rs);            
+             // int indexs = txt.IndexOf("as");
+           //   if(txt.Contains("a"))//检验“/”
+           //  {
+               
+           // txt =  txt.Replace('s','x');//替换“/”为“x/”     
+           //   }
+              Debug.Log("txt:"+txt);  
+          //    Debug.Log("txt:"+indexs);   
+          return txt;   
     }
     void deleteText3d()           //删除Text3d
     {

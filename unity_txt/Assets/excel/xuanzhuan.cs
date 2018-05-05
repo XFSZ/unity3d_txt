@@ -34,9 +34,7 @@ public class xuanzhuan : MonoBehaviour
     void Update()
     {
         if (Application.platform == RuntimePlatform.Android)
-        {
-
-            
+        {  
             AndroidUpdate();
         }
         else

@@ -18,6 +18,7 @@ public class exit : MonoBehaviour {
            quit = !quit;
 		   times += 1; 	 
 		   if(time<1&&times == 2){
+		   PlayerPrefs.SetString("yes","notyes");
             Application.Quit();
 		   }			
 		}

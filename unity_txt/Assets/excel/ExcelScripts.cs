@@ -41,6 +41,10 @@ public class ExcelScripts : MonoBehaviour
     float h = 0;
     float dp;
     float cpz;
+void Awake(){
+
+   //  PlayerPrefs.SetString("yes","notyes");
+}
     void Start()
     {
         GameObject.Find("Main Camera").GetComponent<xuanzhuan>().isexcel = false;
@@ -82,9 +86,9 @@ public class ExcelScripts : MonoBehaviour
     {
         //  string s = string.Format("In = {0}\n name={1}", _filepath, _filename);
         //   GUI.TextArea(new Rect(0, 0, Screen.width * 2 / 10, Screen.height * 2 / 10), s);
-        userName = GUI.TextField(new Rect(Screen.width - 200, 20, 200, 20), userName);//15为最大字符串长度
+        userName = GUI.TextField(new Rect(Screen.width - 200, 60, 200, 20), userName);//15为最大字符串长度
         PlayerPrefs.SetString("wordhttp",userName);
-        if (GUI.Button(new Rect(Screen.width - 80, 80, 50, 20), "重开"))
+        if (GUI.Button(new Rect(Screen.width - 100, 90, 80, 20), "重置"))
         {
             
             deletebutton();
@@ -92,13 +96,13 @@ public class ExcelScripts : MonoBehaviour
             httpimg = "http://" + userName + ":8888";
           //  GameObject.Find("Main Camera").GetComponent<xuanzhuan>().isexcel = false;
         }
-        if (GUI.Button(new Rect(Screen.width - 280, 80, 50, 20), "文本"))
-        {
-            httpimg = "http://" + userName + ":8888";
+       // if (GUI.Button(new Rect(Screen.width - 280, 80, 50, 20), "文本"))
+     //   {
+     //       httpimg = "http://" + userName + ":8888";
        //     GameObject.Find("Main Camera").GetComponent<xuanzhuan>().isexcel = false;
-            deletebutton();
-            PC_objectinit();
-        }
+     //       deletebutton();
+    //        PC_objectinit();
+    //    }
 
     }
 
