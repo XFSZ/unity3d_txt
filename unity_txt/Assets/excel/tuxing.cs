@@ -21,7 +21,7 @@ class tuxing : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        PlayerPrefs.DeleteAll();
+       // PlayerPrefs.DeleteAll();
         isfirst = true;
         biaozhun = false;
         circl = false;

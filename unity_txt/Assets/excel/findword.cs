@@ -30,6 +30,7 @@ public class findword : MonoBehaviour
        // replacetext(t); 
         //	inputtext = this.gameObject.name;
         findwordwithtext();
+    //      Debug.Log("this is4"+ PlayerPrefs.GetString("wordhttp"));
     }
 
     // Update is called once per frame
@@ -53,8 +54,8 @@ public class findword : MonoBehaviour
         textword = wordname;
       //  	string wordhttp  = "127.0.0.1";
         string wordhttp = PlayerPrefs.GetString("wordhttp");
-        Debug.Log(wordhttp);
-        Debug.Log(wordname);
+   //     Debug.Log(wordhttp);
+    //    Debug.Log(wordname);
         string httpsearch = "http://" + wordhttp + ":8888" + "/get/" + wordname;
         StartCoroutine(httpsearchwithtext(httpsearch));
     }
@@ -62,6 +63,7 @@ public class findword : MonoBehaviour
     {
         WWW www = new WWW(s);
         string wordhttp = PlayerPrefs.GetString("wordhttp");
+       
      //   string wordhttp  = "127.0.0.1";
         yield return www;
         yield return new WaitForSeconds(3);
@@ -95,18 +97,10 @@ public class findword : MonoBehaviour
         // Debug.Log(jsondataname[0]["name"].ToString());
     }
     string replacetext(string txt){
-            //  txt= "asdjsfk/asa/asaaa";            
           string s = textword;
           string rs = "<color=#FFFFFF>"+ s+"</color>";
-              txt = txt.Replace(s, rs);            
-             // int indexs = txt.IndexOf("as");
-           //   if(txt.Contains("a"))//检验“/”
-           //  {
-               
-           // txt =  txt.Replace('s','x');//替换“/”为“x/”     
-           //   }
-              Debug.Log("txt:"+txt);  
-          //    Debug.Log("txt:"+indexs);   
+          txt = txt.Replace(s, rs);            
+   //       Debug.Log("txt:"+txt);  
           return txt;   
     }
     void deleteText3d()           //删除Text3d

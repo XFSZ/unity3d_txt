@@ -84,7 +84,7 @@ public class xuanzhuan : MonoBehaviour
                         {
                             touchhit = true;
                             tempposi = !tempposi;
-                          
+                           PlayerPrefs.SetString("wordname",hit.transform.name);
                         }
                         touchh = GameObject.Find(hit.transform.name);
                         if (touchh.gameObject.transform.position.z >= -0.2f)
@@ -180,6 +180,8 @@ public class xuanzhuan : MonoBehaviour
                     tempposi = !tempposi;
                  //   Debug.Log(hit.transform.GetComponent<findword>().inputtext);
                   //  hit.transform.GetComponent<findword>().findwordwithtext();
+                  
+                   Debug.Log("this is5"+ PlayerPrefs.GetString("wordhttp"));
                   PlayerPrefs.SetString("wordname",hit.transform.name);
                   SceneManager.LoadScene(1);
                 //     SceneManager.LoadSceneAsync(1);

@@ -65,13 +65,14 @@ void Awake(){
         // Android_openread();
         // deletebutton();
         // }  
-        Debug.Log("this is1"+PlayerPrefs.GetString("yes"));
+      //  Debug.Log("this is1"+PlayerPrefs.GetString("yes"));
         if(yesui=="yes"){
-        Debug.Log("this is2"+PlayerPrefs.GetString("yes"));
+   //     Debug.Log("this is2"+PlayerPrefs.GetString("yes"));
         string  jsondatan = PlayerPrefs.GetString("jsondata");
         jsondataname = JsonMapper.ToObject(jsondatan);
+   //     Debug.Log("this is json "+jsondataname.Count);
         Android_openread();
-       
+  //      Debug.Log("this is6"+ PlayerPrefs.GetString("wordhttp"));
         deletebutton();
         PlayerPrefs.SetString("yes","notyes");
         }
@@ -87,7 +88,7 @@ void Awake(){
         //  string s = string.Format("In = {0}\n name={1}", _filepath, _filename);
         //   GUI.TextArea(new Rect(0, 0, Screen.width * 2 / 10, Screen.height * 2 / 10), s);
         userName = GUI.TextField(new Rect(Screen.width - 200, 60, 200, 20), userName);//15为最大字符串长度
-        PlayerPrefs.SetString("wordhttp",userName);
+       
         if (GUI.Button(new Rect(Screen.width - 100, 90, 80, 20), "重置"))
         {
             
@@ -139,15 +140,17 @@ void Awake(){
         obj.transform.position = new Vector3((adpi / Screen.width) / 5, adpi / (Screen.height / 2), cpz);
         if (Application.platform == RuntimePlatform.Android)
         {
-
+            
             obj.GetComponent<Button>().onClick.AddListener(Android_openfile);  //点击按钮 打开文件
         }
         if (Application.platform == RuntimePlatform.WindowsPlayer)
         {
+            
             obj.GetComponent<Button>().onClick.AddListener(PC_openfile2);  //点击按钮 打开文件
         }
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
+            
             obj.GetComponent<Button>().onClick.AddListener(PC_openfile2);  //点击按钮 打开文件
         }
     }
@@ -190,6 +193,7 @@ void Awake(){
 
     IEnumerator Android_file_Update(string excelfilepath)
     {
+         
         // 使用WWWForm，往数据库添加数据
         WWW www = new WWW("file://" + excelfilepath);
         yield return www;
@@ -223,6 +227,7 @@ void Awake(){
     }
     IEnumerator Android_file_down()     // 下载json
     {
+  
         string name;
         if (houzhuiming == true)
         {
@@ -236,10 +241,10 @@ void Awake(){
         yield return new WaitForSeconds(8);
         WWW www = new WWW(httpimg + name);           
         yield return www;  
-        Debug.Log(www.text);      
+      //  Debug.Log(www.text);      
         if (www.text == null){
           www = new WWW(httpimg + name);
-          Debug.Log(www.text);
+     //     Debug.Log(www.text);
         }
         
         yield return www;
@@ -498,6 +503,7 @@ void Awake(){
 
     public void Android_openfile()           //调用android  
     {
+             PlayerPrefs.SetString("wordhttp",userName);
         AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         AndroidJavaObject jo = jc.GetStatic<AndroidJavaObject>("currentActivity");
         jo.Call("OpenFile");
@@ -529,6 +535,7 @@ void Awake(){
     }
     void PC_openfile2()  //打开文件
     {
+         PlayerPrefs.SetString("wordhttp",userName);
         OpenFileName ofn = new OpenFileName();
         ofn.structSize = Marshal.SizeOf(ofn);
         //   ofn.filter = "Excel files(*.xlsx)|*.xlsx";
