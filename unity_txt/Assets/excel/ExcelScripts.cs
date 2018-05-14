@@ -298,7 +298,7 @@ void Awake(){
         X++;
         GameObject obj = (GameObject)Instantiate(Resources.Load("3dtext"));   //实例化按钮
          // obj.transform.SetParent(canve.transform, false);
-        obj.transform.position = new Vector3(adpi / (Screen.width) * X * 100, adpi / (Screen.height) * Y * 10, Z);
+        obj.transform.position = new Vector3(adpi / (Screen.width) * X * 200, adpi / (Screen.height) * Y * 20, Z);
         obj.GetComponent<TextMesh>().text = sheetname + " : " + x;
      
         obj.GetComponent<TextMesh>().fontSize = (int)sheetCount;
