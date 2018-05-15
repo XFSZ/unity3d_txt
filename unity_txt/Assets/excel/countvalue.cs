@@ -17,7 +17,7 @@ public class countvalue : MonoBehaviour {
 	}
 	void Start () {
 		 canve = GameObject.Find("Canvas");
-		    cpz = canve.transform.position.z;
+		 cpz = canve.transform.position.z;
 	}
 	
 	// Update is called once per frame

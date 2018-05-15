@@ -63,6 +63,7 @@
      <Compile Include="Assets\excel\OpenFileName.cs" />
      <Compile Include="Assets\excel\SimpleJSON.cs" />
      <Compile Include="Assets\excel\tupian.cs" />
+     <Compile Include="Assets\excel\turntosence.cs" />
      <Compile Include="Assets\excel\tuxing.cs" />
      <Compile Include="Assets\excel\xuanzhuan.cs" />
      <Compile Include="Assets\excel\zhuan.cs" />

@@ -13,7 +13,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using SimpleJSON;
 using LitJson;
-
+using UnityEngine.SceneManagement;
 
 public class ExcelScripts : MonoBehaviour
 {
@@ -289,6 +289,10 @@ void Awake(){
            }
         }
     }
+    void turnsecen(){
+         PlayerPrefs.SetString("wordname",this.transform.name);
+         SceneManager.LoadScene(1);
+    }
     public void LoadImagen(float sheetCount, string sheetname, string x, float y)
     {
         if(sheetCount<28)
@@ -296,7 +300,16 @@ void Awake(){
             sheetCount =28;
         }
         X++;
-        GameObject obj = (GameObject)Instantiate(Resources.Load("3dtext"));   //实例化按钮
+        GameObject  obj = (GameObject)Instantiate(Resources.Load("CanvasText"));   //实例化按钮
+        obj.GetComponent<Canvas>().worldCamera = Camera.main;
+         // obj.transform.SetParent(canve.transform, false);
+        obj.transform.position = new Vector3(adpi / (Screen.width) * X * 500, adpi / (Screen.height) * Y * 60, Z);
+        obj.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = sheetname + " : " + x;
+        obj.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().fontSize  = (int)sheetCount /10;
+        obj.name = sheetname;
+      // obj.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(Android_openfile);
+        /* 
+        GameObject  obj = (GameObject)Instantiate(Resources.Load("3dtext"));   //实例化按钮
          // obj.transform.SetParent(canve.transform, false);
         obj.transform.position = new Vector3(adpi / (Screen.width) * X * 200, adpi / (Screen.height) * Y * 20, Z);
         obj.GetComponent<TextMesh>().text = sheetname + " : " + x;
@@ -304,7 +317,7 @@ void Awake(){
         obj.GetComponent<TextMesh>().fontSize = (int)sheetCount;
         obj.name = sheetname;
         obj.AddComponent<BoxCollider>();
-      
+      */
         if (X >= -DX)
         {
             X = UX;
@@ -340,6 +353,7 @@ void Awake(){
         buttons = GameObject.FindGameObjectsWithTag("button");
         foreach (GameObject btn in buttons)
         {
+           // btn.transform.parent.transform.gameObject.SetActive(false);
             Destroy(btn);
         }
     }
