@@ -10,7 +10,7 @@ public class xuanzhuan : MonoBehaviour
 {
  
     private float lastDis = 0;
-    private float cameraDis = -200f;
+    private float cameraDis = -340f;
     public float ScaleDump = 0.1f;
     // public float speed = 0.1F;
     public GameObject[] box;
@@ -121,7 +121,7 @@ public class xuanzhuan : MonoBehaviour
                     if (Mathf.Abs(dis - lastDis) > 1)
                     {
                         cameraDis += (dis - lastDis) * ScaleDump;
-                        cameraDis = Mathf.Clamp(cameraDis, -200f, -10f);
+                        cameraDis = Mathf.Clamp(cameraDis, -540f, -10f);
                         lastDis = dis;
                     }
                 }

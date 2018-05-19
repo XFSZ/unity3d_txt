@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System;
 using System.Text;
-using Excel;
-using System.Data;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+//using Excel;
+//using System.Data;
+//using System.Data.OleDb;
+//using System.Data.SqlClient;
 using System.Linq;
 using SimpleJSON;
 using LitJson;
@@ -22,7 +22,7 @@ public class ExcelScripts : MonoBehaviour
     GameObject canve;
     JsonData jsondataname = null;
     GameObject[] buttons;
-    DataSet mResultSets;
+  //  DataSet mResultSets;
     private string userName = "";
     string httplist = "";
     string httpimg = "";
@@ -41,12 +41,14 @@ public class ExcelScripts : MonoBehaviour
     float h = 0;
     float dp;
     float cpz;
+    bool changecolor;
 void Awake(){
 
    //  PlayerPrefs.SetString("yes","notyes");
 }
     void Start()
     {
+        changecolor = true;
         GameObject.Find("Main Camera").GetComponent<xuanzhuan>().isexcel = false;
         this.name = "Image";
         canve = GameObject.Find("Canvas");
@@ -58,14 +60,16 @@ void Awake(){
         cpz = canve.transform.position.z;
         canve.GetComponent<CanvasScaler>().referencePixelsPerUnit = adpi;
        // Debug.Log(PlayerPrefs.GetInt("1"));
-        PC_objectinit();
-        string yesui = PlayerPrefs.GetString("yes");
+       // PC_objectinit();
+       // StartCoroutine( Android_file_down());
+       
         // if(PlayerPrefs.GetInt("1")!=0){
         // jsondataname = PlayerPrefs.GetString("jsondata");
         // Android_openread();
         // deletebutton();
         // }  
       //  Debug.Log("this is1"+PlayerPrefs.GetString("yes"));
+      string yesui = PlayerPrefs.GetString("yes");
         if(yesui=="yes"){
    //     Debug.Log("this is2"+PlayerPrefs.GetString("yes"));
         string  jsondatan = PlayerPrefs.GetString("jsondata");
@@ -75,14 +79,44 @@ void Awake(){
   //      Debug.Log("this is6"+ PlayerPrefs.GetString("wordhttp"));
         deletebutton();
         PlayerPrefs.SetString("yes","notyes");
+        }else{
+            StartCoroutine( Android_file_down());
         }
     }
     void Update(){
         
-
+        if(Input.GetKeyDown(KeyCode.Escape)){
+             SceneManager.LoadScene(0);
+        } 
 
     }
+         void fisrtstart(){
+              GameObject.Find("Main Camera").GetComponent<xuanzhuan>().isexcel = false;
+        this.name = "Image";
+        canve = GameObject.Find("Canvas");
+        adpi = Screen.dpi;
+        w = Screen.width;
+        h = Screen.height;
+        dp = adpi / 160;
+        Debug.Log(adpi);
+        cpz = canve.transform.position.z;
+        canve.GetComponent<CanvasScaler>().referencePixelsPerUnit = adpi;
+      
+        PC_objectinit();
+        string yesui = PlayerPrefs.GetString("yes");
 
+        if(yesui=="yes"){
+   
+        string  jsondatan = PlayerPrefs.GetString("jsondata");
+        jsondataname = JsonMapper.ToObject(jsondatan);
+  
+        Android_openread();
+  
+        deletebutton();
+        PlayerPrefs.SetString("yes","notyes");
+         }
+         }
+         /* 
     void OnGUI()
     {
         //  string s = string.Format("In = {0}\n name={1}", _filepath, _filename);
@@ -91,22 +125,33 @@ void Awake(){
        
         if (GUI.Button(new Rect(Screen.width - 100, 90, 80, 20), "重置"))
         {
-            
-            deletebutton();
-            PC_objectinit();
-            httpimg = "http://" + userName + ":8888";
+            AchangeText3d();
+          //  deletebutton();
+           // PC_objectinit();
+           // httpimg = "http://" + userName + ":8888";
           //  GameObject.Find("Main Camera").GetComponent<xuanzhuan>().isexcel = false;
         }
-       // if (GUI.Button(new Rect(Screen.width - 280, 80, 50, 20), "文本"))
-     //   {
-     //       httpimg = "http://" + userName + ":8888";
-       //     GameObject.Find("Main Camera").GetComponent<xuanzhuan>().isexcel = false;
-     //       deletebutton();
-    //        PC_objectinit();
-    //    }
+       if (GUI.Button(new Rect(Screen.width - 280, 80, 50, 20), "文本"))
+       {
+            BchangeText3d();
+          // httpimg = "http://" + userName + ":8888";
+         //  GameObject.Find("Main Camera").GetComponent<xuanzhuan>().isexcel = false;
+         //  deletebutton();
+         //  PC_objectinit();
+       }
 
     }
-
+    */
+ public void chagecolor(){
+  if(changecolor == true){
+       AchangeText3d();
+       changecolor = !changecolor;
+  }else{
+      BchangeText3d();
+        
+        changecolor = !changecolor;
+  }
+ }
     // 各种button的初始化
     //初始按钮 打开文件用的 并阅读sheet
     void objectinit()
@@ -186,7 +231,7 @@ void Awake(){
     {
 
         FileStream m_Stream = File.Open(ofn.file, FileMode.Open, FileAccess.Read);
-        readexcelfile(m_Stream);
+    //    readexcelfile(m_Stream);
         //readsheet();//读取行数
 
     }
@@ -227,7 +272,7 @@ void Awake(){
     }
     IEnumerator Android_file_down()     // 下载json
     {
-  
+    httpimg = "http://" + PlayerPrefs.GetString("wordhttp") + ":8888";
         string name;
         if (houzhuiming == true)
         {
@@ -290,21 +335,29 @@ void Awake(){
         }
     }
     void turnsecen(){
+        PlayerPrefs.SetString("yes","notyes");
+         
          PlayerPrefs.SetString("wordname",this.transform.name);
-         SceneManager.LoadScene(1);
+         SceneManager.LoadScene(2);
     }
     public void LoadImagen(float sheetCount, string sheetname, string x, float y)
     {
-        if(sheetCount<28)
+        if(sheetCount<30)
         {
-            sheetCount =28;
+            sheetCount =30;
         }
         X++;
+        float red = UnityEngine.Random.Range(0.0f, 1.0f);
+        float green = UnityEngine.Random.Range (0.0f, 1.0f);
+        float blue = UnityEngine.Random.Range (0.0f, 1.0f);
+       // Renderer render = obj.GetComponent<Renderer> ();
+      //  render.material.color = new Color(red, green, blue);
         GameObject  obj = (GameObject)Instantiate(Resources.Load("CanvasText"));   //实例化按钮
         obj.GetComponent<Canvas>().worldCamera = Camera.main;
          // obj.transform.SetParent(canve.transform, false);
-        obj.transform.position = new Vector3(adpi / (Screen.width) * X * 500, adpi / (Screen.height) * Y * 60, Z);
+        obj.transform.position = new Vector3( X * 50,  Y * 8, Z);
         obj.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = sheetname + " : " + x;
+        obj.transform.GetChild(0).GetComponent<Image>().color = new Color(red, green, blue);
         obj.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().fontSize  = (int)sheetCount /10;
         obj.name = sheetname;
       // obj.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(Android_openfile);
@@ -336,7 +389,7 @@ void Awake(){
 
     }
 
-
+/* 
     void readexcelfile(FileStream m_Stream)       //读取excel文件并转成dataset
     {
         //使用OpenXml读取Excel文件
@@ -347,6 +400,7 @@ void Awake(){
         //读完之后执行下一步
         openreadsheet();
     }
+    */
     void deletebutton()           //删除button
     {
 
@@ -366,6 +420,32 @@ void Awake(){
             Destroy(btn);
         }
     }
+           void AchangeText3d()           //删除Text3d
+    {
+
+        buttons = GameObject.FindGameObjectsWithTag("img");
+        foreach (GameObject btn in buttons)
+        {
+            float r = btn.transform.GetChild(0).GetComponent<Image>().color.r;
+             float g = btn.transform.GetChild(0).GetComponent<Image>().color.g;
+              float b = btn.transform.GetChild(0).GetComponent<Image>().color.b;
+            btn.transform.GetChild(0).GetComponent<Image>().color = new Color(r,g,b,0);
+             btn.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().color = new Color(r,g,b,1);
+        }
+    }
+               void BchangeText3d()           //删除Text3d
+    {
+
+        buttons = GameObject.FindGameObjectsWithTag("img");
+        foreach (GameObject btn in buttons)
+        {
+            float r = btn.transform.GetChild(0).GetComponent<Image>().color.r;
+             float g = btn.transform.GetChild(0).GetComponent<Image>().color.g;
+              float b = btn.transform.GetChild(0).GetComponent<Image>().color.b;
+            btn.transform.GetChild(0).GetComponent<Image>().color = new Color(1-r,1-g,1-b,1);
+        }
+    }
+    /* 
     public void openreadsheet()    // PC端读取表
     {
         deletebutton();
@@ -389,6 +469,7 @@ void Awake(){
             //        Debug.Log(sheetplace);
         }
     }
+    */
     public void Android_openreadsheet()    // android端读取json
     {
         deletebutton();
@@ -410,6 +491,7 @@ void Awake(){
 
         }
     }
+    /* 
     public void openfirstRow(int sheetCount)   //读取表头数据
     {
         deletebutton();
@@ -433,7 +515,7 @@ void Awake(){
 
         }
     }
-
+*/
     public void Android_openfirstRow(int sheetCount)   //读取表头数据
     {
         deletebutton();
@@ -457,6 +539,7 @@ void Awake(){
             firstRowplace++;
         }
     }
+    /* 
     public void openXcloumn(int sheetCount, int ColumnsCount)           //读取某一列值
     {
         List<double> cloumuarr = new List<double>();
@@ -514,7 +597,7 @@ void Awake(){
         }
         // 分组中第一个组就是重复最多的
     }
-
+*/
     public void Android_openfile()           //调用android  
     {
              PlayerPrefs.SetString("wordhttp",userName);

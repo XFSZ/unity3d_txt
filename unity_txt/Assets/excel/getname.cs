@@ -18,11 +18,11 @@ public class getname : MonoBehaviour {
         }
         if (Application.platform == RuntimePlatform.WindowsPlayer)
         {
-           GameObject.Find("Image").GetComponent<ExcelScripts>().openfirstRow(k);  //点击按钮 打开文件
+    //       GameObject.Find("Image").GetComponent<ExcelScripts>().openfirstRow(k);  //点击按钮 打开文件
         }
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
-           GameObject.Find("Image").GetComponent<ExcelScripts>().openfirstRow(k);  //点击按钮 打开文件
+     //      GameObject.Find("Image").GetComponent<ExcelScripts>().openfirstRow(k);  //点击按钮 打开文件
         }
 	 //  GameObject.Find("Image").GetComponent<ExcelScripts>().openfirstRow(k);
     }

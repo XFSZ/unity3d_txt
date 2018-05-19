@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-class tuxing : MonoBehaviour
+public class tuxing : MonoBehaviour
 {
     int i = 0, j = 0, k = 0;
     GameObject[] box;
     bool sj;
     bool biaozhun;
     bool circl;
-    float size = 45f;
+    float size = 160f;
     Vector3[] positi;
     
     Transform[] kids;
@@ -39,7 +39,7 @@ class tuxing : MonoBehaviour
         if(isfirst == true ){
         positi = new Vector3[(int)box.Length];
         for (int i = 0; i < box.Length; i++)
-        { positi[i] = new Vector3(Random.Range(-60, 60), Random.Range(-30, 30), Random.Range(0, 90)); }
+        { positi[i] = new Vector3(Random.Range(-240, 240), Random.Range(-120, 120), Random.Range(0, 120)); }
         for (int i = 0; i < box.Length; i++)
         {
             PlayerPrefs.SetFloat(box[i].transform.name + "1", box[i].transform.position.x);
@@ -58,6 +58,7 @@ class tuxing : MonoBehaviour
         if (biaozhun == true) { putong(); }
 
     }
+    /* 
     void OnGUI()
     {
         GUI.backgroundColor = Color.clear;
@@ -72,6 +73,16 @@ class tuxing : MonoBehaviour
         { box = GameObject.FindGameObjectsWithTag("img");sijiweizhi(); circl = true; biaozhun = false; sj = false; i = 0;isfirst = false; }
 
     }
+    */
+public void StandardBtn(){
+box = GameObject.FindGameObjectsWithTag("img");sijiweizhi();biaozhun = true; circl = false;sj = false; k = 0; isfirst = false;
+}
+public void RandomBtn(){
+box = GameObject.FindGameObjectsWithTag("img"); sijiweizhi(); sj = true; biaozhun = false; circl = false; j = 0; isfirst = false;
+}
+public void SphereBtn(){
+box = GameObject.FindGameObjectsWithTag("img");sijiweizhi(); circl = true; biaozhun = false; sj = false; i = 0;isfirst = false; 
+}
     // void suiji()
     // {
     //     bool c = false;
@@ -94,7 +105,7 @@ class tuxing : MonoBehaviour
             box[j].transform.position += new Vector3(0,-10,0) * Time.deltaTime * 1.5f;
             box[j].transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, box[j].transform.position.z) - Vector3.back);
             if(box[j].transform.position.y<-10){
-                box[j].transform.position = new Vector3(Random.Range(-60, 60),  30, Random.Range(0, 90));
+                box[j].transform.position = new Vector3(Random.Range(-240, 240),  80, Random.Range(0, 90));
             }
           //  if (Vector3.Distance(box[j].transform.position, positi[j]) < 1) { c = true; }
 

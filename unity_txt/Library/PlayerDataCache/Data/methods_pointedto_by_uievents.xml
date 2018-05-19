@@ -1,0 +1,18 @@
+<linker>
+	<assembly fullname="Assembly-CSharp">
+		<type fullname="turntosence">
+			<method name="mainturnscene"/>
+		</type>
+		<type fullname="tuxing">
+			<method name="RandomBtn"/>
+			<method name="SphereBtn"/>
+			<method name="StandardBtn"/>
+		</type>
+		<type fullname="ExcelScripts">
+			<method name="chagecolor"/>
+		</type>
+		<type fullname="findword">
+			<method name="findwordwithtext"/>
+		</type>
+	</assembly>
+</linker>

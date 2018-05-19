@@ -17,17 +17,17 @@ public class getcolumn : MonoBehaviour {
  if (Application.platform == RuntimePlatform.Android)
         {
             
-			   GameObject.Find("Image").GetComponent<ExcelScripts>().Android_openXcloumn(sheetcount,columncount);
+	//		   GameObject.Find("Image").GetComponent<ExcelScripts>().Android_openXcloumn(sheetcount,columncount);
         //    GameObject.Find("Image").GetComponent<ExcelScripts>().Android_openfirstRow(k);  //点击按钮 打开文件
         }
         if (Application.platform == RuntimePlatform.WindowsPlayer)
         {
-			   GameObject.Find("Image").GetComponent<ExcelScripts>().openXcloumn(sheetcount,columncount);
+	//		   GameObject.Find("Image").GetComponent<ExcelScripts>().openXcloumn(sheetcount,columncount);
        //    GameObject.Find("Image").GetComponent<ExcelScripts>().openfirstRow(k);  //点击按钮 打开文件
         }
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
-			   GameObject.Find("Image").GetComponent<ExcelScripts>().openXcloumn(sheetcount,columncount);
+	//		   GameObject.Find("Image").GetComponent<ExcelScripts>().openXcloumn(sheetcount,columncount);
          //  GameObject.Find("Image").GetComponent<ExcelScripts>().openfirstRow(k);  //点击按钮 打开文件
         }
 	 //  GameObject.Find("Image").GetComponent<ExcelScripts>().openXcloumn(sheetcount,columncount);

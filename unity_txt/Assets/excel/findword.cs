@@ -7,9 +7,9 @@ using System.IO;
 using System;
 using System.Text;
 using Excel;
-using System.Data;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+//using System.Data;
+//using System.Data.OleDb;
+//using System.Data.SqlClient;
 using System.Linq;
 using SimpleJSON;
 using LitJson;
@@ -41,10 +41,13 @@ public class findword : MonoBehaviour
             t2 = Time.realtimeSinceStartup;    
             if(t2 - t1 < 0.2){  
 				  
-                 SceneManager.LoadScene(0);
+                 SceneManager.LoadScene(1);
             }    
             t1 = t2;    
-        }    
+        } 
+        if(Input.GetKeyDown(KeyCode.Escape)){
+             SceneManager.LoadScene(1);
+        }   
     }
     public void findwordwithtext()
     {
